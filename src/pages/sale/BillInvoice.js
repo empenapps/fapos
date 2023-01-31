@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import { forwardRef } from "react";
 import { useSelector } from "react-redux";
-
+// import qr from ""
 const mainContainer = {
   width: "90%",
   margin: "auto",
@@ -111,6 +111,13 @@ const BillInvoice = forwardRef((props, ref) => {
         </div>
       </div>
       <hr style={line} />
+      <div className="QRCode">
+        <img
+          style={{ width: "110px", height: "125px" }}
+          src="/assets/images/bill/qrcode.png"
+        />
+        <div>Technology Partner https://posbytz.com</div>
+      </div>
     </Box>
   );
 });

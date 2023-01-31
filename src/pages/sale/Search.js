@@ -17,7 +17,6 @@ const Search = () => {
   const [barcode, setBarcode] = useState();
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.value);
-  console.log(product);
   const saleProducts = useSelector((state) => state.saleProducts.value);
 
   const findProduct = (barcode, product) => {

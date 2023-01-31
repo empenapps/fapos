@@ -113,7 +113,7 @@ const BillInvoice = forwardRef((props, ref) => {
       <hr style={line} />
       <div className="QRCode">
         <img
-          style={{ width: "110px", height: "130px" }}
+          style={{ width: "110px", height: "125px" }}
           src="/assets/images/bill/qrcode.png"
         />
         <div>Technology Partner https://posbytz.com</div>

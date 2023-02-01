@@ -116,7 +116,6 @@ const Sale = () => {
         console.log(response.data);
         dispatch(saveSaleData(response.data));
         dispatch(emptySale());
-        navigate("/dashboard");
       })
       .catch(function (error) {
         console.log(error);
@@ -125,7 +124,7 @@ const Sale = () => {
 
   const clearSale = () => {
     var data = JSON.stringify({
-      inStoreId: "1",
+      inStoreId: saleProducts[0].storeId,
     });
 
     var config = {
@@ -168,7 +167,6 @@ const Sale = () => {
           <Box sx={{ p: 2, pb: 2 }}>
             <Stack spacing={2}>
               <Button onClick={() => saveSale()}> SAVE ONLY </Button>
-              <Button onClick={() => clearSale()}> CLEAR </Button>
               <Button
                 onClick={() => {
                   saveSale();
@@ -178,6 +176,7 @@ const Sale = () => {
                 {" "}
                 SAVE & PRINT{" "}
               </Button>
+              <Button onClick={() => clearSale()}> CLEAR </Button>
             </Stack>
           </Box>
           <AddSaleTable />

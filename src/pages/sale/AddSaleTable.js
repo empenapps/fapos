@@ -22,6 +22,7 @@ function createData(name, calories, fat, carbs, protein) {
 
 export default function BasicTable() {
   const rows = useSelector((state) => state.AddSaleData.value).productList;
+  console.log(rows);
   return (
     <TableContainer component={Paper} style={{ marginTop: "20px" }}>
       <Table aria-label="simple table">

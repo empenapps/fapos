@@ -94,7 +94,7 @@ const Sale = () => {
   const navigate = useNavigate();
   let componentRef = useRef();
   const saleProducts = useSelector((state) => state.saleProducts.value);
-  const saveSale = () => {
+  const saveSale = async () => {
     const data = saleProducts.map((product) => {
       return {
         inProductCode: product.productCode,
@@ -111,15 +111,12 @@ const Sale = () => {
       },
       data: JSON.stringify({ itemList: data }),
     };
-    axios(config)
-      .then(function (response) {
-        console.log(response.data);
-        dispatch(saveSaleData(response.data));
-        dispatch(emptySale());
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+
+    const response = await axios(config);
+    console.log(response.data);
+    dispatch(saveSaleData(response.data));
+    dispatch(emptySale());
+    console.log("all done");
   };
 
   const clearSale = () => {
@@ -138,7 +135,7 @@ const Sale = () => {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        console.log("cleared");
         dispatch(emptySale());
         dispatch(emptySalesAdd());
       })
@@ -169,8 +166,13 @@ const Sale = () => {
               <Button onClick={() => saveSale()}> SAVE ONLY </Button>
               <Button
                 onClick={() => {
-                  saveSale();
-                  handlePrint();
+                  saveSale()
+                    .then(() => {
+                      handlePrint();
+                    })
+                    .catch((error) => {
+                      console.log(error);
+                    });
                 }}
               >
                 {" "}

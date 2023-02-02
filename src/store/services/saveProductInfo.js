@@ -1,18 +1,9 @@
-import { SettingsBackupRestoreRounded } from "@material-ui/icons";
 import axios from "axios";
 import { BASE_URL } from "../../Api";
 
-export const saveProductInfo = (data, navigate) => {
-  const product = JSON.stringify({
-    inProductNameEn: data[0].productNameEn,
-    inProductCode: data[0].productCode,
-    inProductPrice: data[0].productPrice,
-    inStoreId: data[0].storeId,
-  });
-  console.log(data);
-  console.log(data[0].productNameEn);
+export const saveProductInfo = (data) => {
   axios
-    .put(`${BASE_URL}/pos-api/product/save`, product, {
+    .put(`${BASE_URL}/pos-api/product/save`, JSON.stringify(data), {
       headers: { "Content-Type": "application/json" },
     })
     .then((response) => {

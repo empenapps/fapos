@@ -8,11 +8,10 @@ import { Box, FormControl, InputAdornment, OutlinedInput } from "@mui/material";
 
 // assets
 import { SearchOutlined } from "@ant-design/icons";
-import { setSearchedProduct } from "../../store/reducers/searchedProduct";
 
 // ==============================|| HEADER CONTENT - SEARCH ||============================== //
 
-export default function Search() {
+export default function Search({ setData }) {
   const dispatch = useDispatch();
   const [barcode, setBarcode] = useState("");
 
@@ -22,7 +21,14 @@ export default function Search() {
     const filtered = product?.filter((p) => {
       return p.productCode === barcode;
     });
-    dispatch(setSearchedProduct(filtered));
+    if (filtered[0]) {
+      setData({
+        inProductNameEn: filtered[0].productNameEn,
+        inProductCode: filtered[0].productCode,
+        inProductPrice: filtered[0].productPrice,
+        inStoreId: filtered[0].storeId,
+      });
+    }
   };
 
   useEffect(() => {

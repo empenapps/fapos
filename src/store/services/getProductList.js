@@ -1,6 +1,5 @@
 import axios from "axios";
 import { BASE_URL } from "./../../Api";
-import { getProduct } from "../actions/product";
 
 export const getProductList = async () => {
   let api;

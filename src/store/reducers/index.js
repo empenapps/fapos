@@ -5,7 +5,6 @@ import { combineReducers } from "redux";
 import user from "./user";
 import menu from "./menu";
 import product from "./product";
-import searchedProduct from "./searchedProduct";
 import saleProducts from "./saleProducts";
 import AddSaleData from "./saleAdd";
 import saveSale from "./saveSale";
@@ -15,7 +14,6 @@ const reducers = combineReducers({
   user,
   menu,
   product,
-  searchedProduct,
   saleProducts,
   AddSaleData,
   saveSale,

@@ -38,8 +38,7 @@ import {
   strengthColor,
   strengthIndicator,
 } from "../../utils/password-strength";
-import { useSelector } from "react-redux";
-import { emptySearchedProduct } from "../../store/reducers/searchedProduct";
+import { useDispatch, useSelector } from "react-redux";
 
 // ==============================|| ORDER TABLE ||============================== //
 
@@ -49,38 +48,22 @@ export default function ProductForm({ data, setData }) {
   const [selected] = useState([]);
   const [level, setLevel] = useState();
   const [items, setItems] = useState({});
-  const searchedProduct = useSelector((state) => state.searchedProduct.value);
-  useEffect(() => {
-    setItems(searchedProduct[0]);
-  });
 
   const FormObserver = () => {
     const { values } = useFormikContext();
-    useEffect(() => {
-      setData(values);
-      // return () => {
-      //   emptySearchedProduct();
-      // };
-    }, [values]);
-    return null;
   };
 
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
   return (
     <Box m={2} pt={3}>
-      <Formik
-        enableReinitialize={true}
-        initialValues={{
-          inProductNameEn: items?.productNameEn,
-          inProductCode: items?.productCode,
-          inProductPrice: items?.productPrice,
-          inStoreId: items?.storeId,
-        }}
-      >
+      <Formik enableReinitialize={true} initialValues={data}>
         {({
           errors,
           resetForm,
           handleBlur,
-          handleChange,
+          // handleChange,
           handleSubmit,
           isSubmitting,
           touched,

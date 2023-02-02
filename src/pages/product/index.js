@@ -80,9 +80,8 @@ const Product = () => {
   };
 
   const [data, setData] = useState(initialState);
-  const searchedProduct = useSelector((state) => state.searchedProduct.value);
   const handleClick = () => {
-    saveProductInfo(searchedProduct, navigate);
+    saveProductInfo(data);
   };
 
   return (
@@ -93,7 +92,7 @@ const Product = () => {
         <Grid item xs={12} sx={{ mb: -2.25 }}>
           <Typography variant="h5">Product</Typography>
           <br />
-          <Search />
+          <Search setData={setData} />
         </Grid>
         <Grid item xs={12} md={7} lg={8}>
           <MainCard sx={{ mt: 2 }} content={false}>

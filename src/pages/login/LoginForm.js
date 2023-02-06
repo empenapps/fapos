@@ -33,11 +33,11 @@ export default function LoginForm() {
   const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
-
+  const storeId = useSelector((state) => state.storeId.value);
   const handleClick = async () => {
     try {
       const response = await axios.post(
-        `${BASE_URL}/pos-api/user/login`,
+        `${BASE_URL}/user/login`,
         {
           inUserName: store.user,
           inUserPassword: store.password,
@@ -50,8 +50,7 @@ export default function LoginForm() {
         }
       );
       dispatch(setUserData(response.data));
-      const data = await getProductList();
-      dispatch(setProduct(data.productList));
+      await getProductList(dispatch, storeId);
       navigate("/dashboard", { replace: true });
     } catch (error) {
       console.log(error);

@@ -105,7 +105,7 @@ const Sale = () => {
     });
     const config = {
       method: "put",
-      url: `${BASE_URL}/pos-api/sale/save`,
+      url: `${BASE_URL}/sale/save`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -126,7 +126,7 @@ const Sale = () => {
 
     var config = {
       method: "put",
-      url: `${BASE_URL}/pos-api/clear/cart`,
+      url: `${BASE_URL}/clear/cart`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -181,8 +181,8 @@ const Sale = () => {
               <Button onClick={() => clearSale()}> CLEAR </Button>
             </Stack>
           </Box>
-          <AddSaleTable />
         </MainCard>
+        <AddSaleTable />
         <BillInvoice ref={componentRef} />
         <ReactToPrint
         // trigger={() => {

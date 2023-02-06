@@ -5,18 +5,18 @@ import { SalesAdd } from "../../store/reducers/saleAdd";
 function addSale(product, dispatch) {
   const data = JSON.stringify({
     inProductCode: product.productCode,
-    inProductQty: 1,
+    inProductQty: product.quantity + 1,
     inProductPrice: product.productPrice,
     inStoreId: product.storeId,
   });
-
+  console.log(product);
   const config = {
     method: "put",
-    url: `${BASE_URL}/pos-api/sale/add`,
+    url: `${BASE_URL}/sale/add`,
     headers: {
       "Content-Type": "application/json",
     },
-    data: data,
+    data,
   };
 
   axios(config)

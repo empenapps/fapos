@@ -48,6 +48,7 @@ import ProductForm from "./ProductForm";
 import Search from "./../product/Search";
 
 import { saveProductInfo } from "./../../store/services/saveProductInfo";
+import { getStoreId } from "../../store/reducers/product";
 
 // avatar style
 const avatarSX = {
@@ -80,26 +81,28 @@ const Product = () => {
   };
 
   const [data, setData] = useState(initialState);
+  const [barcode, setBarcode] = useState("");
+  const storeId = useSelector((state) => state.storeId.value);
   const handleClick = () => {
-    saveProductInfo(data);
+    saveProductInfo({ ...data, inStoreId: storeId }, dispatch);
+    setData(initialState);
+    setBarcode("");
   };
 
   return (
     <>
       <Grid container rowSpacing={4.5} columnSpacing={2.75}>
         {/* row 1 */}
-
         <Grid item xs={12} sx={{ mb: -2.25 }}>
           <Typography variant="h5">Product</Typography>
           <br />
-          <Search setData={setData} />
+          <Search setData={setData} barcode={barcode} setBarcode={setBarcode} />
         </Grid>
         <Grid item xs={12} md={7} lg={8}>
           <MainCard sx={{ mt: 2 }} content={false}>
             <ProductForm data={data} setData={setData} />
           </MainCard>
         </Grid>
-
         <Grid item xs={12} md={5} lg={4}>
           <MainCard sx={{ mt: 2 }} content={false}>
             <Box sx={{ p: 2, pb: 2 }}>

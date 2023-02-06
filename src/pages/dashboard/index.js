@@ -81,10 +81,11 @@ const DashboardDefault = () => {
   const [value, setValue] = useState("today");
   const [slot, setSlot] = useState("week");
   const [kpiData, setKpiData] = useState();
+  const storeId = useSelector((state) => state.storeId.value);
   useEffect(() => {
     const getKpiData = async () => {
       try {
-        const res = await axios.get(`${BASE_URL}/pos-api/dashboard/kpi/3`);
+        const res = await axios.get(`${BASE_URL}/dashboard/kpi/${storeId}`);
         setKpiData(res.data.dashboardList[0]);
       } catch (error) {
         console.log(error);

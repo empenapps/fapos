@@ -20,7 +20,7 @@ const Search = () => {
   const saleProducts = useSelector((state) => state.saleProducts.value);
 
   const findProduct = (barcode, product) => {
-    const filtered = product?.filter((p) => {
+    const filtered = product.filter((p) => {
       return p.productCode === barcode;
     });
     if (filtered[0]) {

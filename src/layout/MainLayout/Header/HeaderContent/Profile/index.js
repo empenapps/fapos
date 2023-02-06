@@ -73,6 +73,7 @@ const Profile = () => {
     // logout
     localStorage.clear();
     navigate("login");
+    window.location.reload();
   };
 
   const anchorRef = useRef(null);

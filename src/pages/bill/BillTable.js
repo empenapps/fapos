@@ -20,6 +20,7 @@ import {
 // project import
 import Dot from "../../components/@extended/Dot";
 import { BASE_URL } from "../../Api";
+import { useSelector } from "react-redux";
 
 function createData(trackingNo, name, fat, carbs, protein) {
   return { trackingNo, name, fat, carbs, protein };
@@ -174,10 +175,11 @@ export default function BillTable() {
   const [orderBy] = useState("billid");
   const [selected] = useState([]);
   const [rows, setRows] = useState();
+  const storeId = useSelector((state) => state.storeId.value);
   const isSelected = (trackingNo) => selected.indexOf(trackingNo) !== -1;
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/pos-api/bill/list/6`)
+      .get(`${BASE_URL}/bill/list/${storeId}`)
       .then(function (response) {
         console.log(response.data.billList);
         setRows(response.data.billList);

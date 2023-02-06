@@ -11,10 +11,8 @@ import { SearchOutlined } from "@ant-design/icons";
 
 // ==============================|| HEADER CONTENT - SEARCH ||============================== //
 
-export default function Search({ setData }) {
+export default function Search({ setData, barcode, setBarcode }) {
   const dispatch = useDispatch();
-  const [barcode, setBarcode] = useState("");
-
   const product = useSelector((state) => state.product.value);
 
   const findProduct = (barcode, product) => {

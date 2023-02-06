@@ -1,17 +1,18 @@
 import axios from "axios";
+import { setProduct } from "../reducers/product";
+import { setStoreId } from "../reducers/storeId";
 import { BASE_URL } from "./../../Api";
 
-export const getProductList = async () => {
-  let api;
-  const url = `${BASE_URL}/pos-api/product/list/1`;
+export const getProductList = async (dispatch, storeId) => {
+  const url = `${BASE_URL}/product/list/${storeId}`;
   await axios
     .get(url)
     .then((response) => {
-      api = response.data;
+      dispatch(setProduct(response.data.productList));
+      dispatch(setStoreId(response.data.productList[0].storeId));
+      console.log("success");
     })
     .catch((error) => {
       console.log(error);
     });
-
-  return api;
 };

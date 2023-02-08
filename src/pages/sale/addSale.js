@@ -5,11 +5,10 @@ import { SalesAdd } from "../../store/reducers/saleAdd";
 function addSale(product, dispatch) {
   const data = JSON.stringify({
     inProductCode: product.productCode,
-    inProductQty: product.quantity + 1,
+    inProductQty: product.quantity,
     inProductPrice: product.productPrice,
     inStoreId: product.storeId,
   });
-  console.log(product);
   const config = {
     method: "put",
     url: `${BASE_URL}/sale/add`,

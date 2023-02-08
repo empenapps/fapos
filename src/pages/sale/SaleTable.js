@@ -200,9 +200,10 @@ export default function Sale() {
   const changeQuantity = (type, product) => {
     if (type === "increase") {
       dispatch(increaseQuantity(product));
-      addSale(product, dispatch);
+      addSale({ ...product, quantity: product.quantity + 1 }, dispatch);
     } else {
       dispatch(decreaseQuantity(product));
+      addSale({ ...product, quantity: product.quantity - 1 }, dispatch);
     }
   };
   return (

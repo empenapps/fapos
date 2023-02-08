@@ -9,8 +9,8 @@ export const saveProductInfo = (data, dispatch) => {
       headers: { "Content-Type": "application/json" },
     })
     .then((response) => {
-      console.log(response.status);
       getProductList(dispatch, product.inStoreId);
+      console.log('Product Saved Successfully');
     })
     .catch((error) => {
       console.log(error);

@@ -4,7 +4,8 @@ import { setStoreId } from "../reducers/storeId";
 import { BASE_URL } from "./../../Api";
 
 export const getProductList = async (dispatch, storeId) => {
-  const url = `${BASE_URL}/product/list/${storeId}`;
+  // const url = `${BASE_URL}/product/list/${storeId}`;
+  const url = `${BASE_URL}/product/list/1`;
   await axios
     .get(url)
     .then((response) => {

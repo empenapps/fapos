@@ -28,8 +28,10 @@ export const saleProducts = createSlice({
       );
       if (getProduct.quantity > 1) {
         getProduct.quantity = getProduct.quantity - 1;
+        state.value.splice(index, 1, getProduct);
+      } else {
+        state.value.splice(index, 1);
       }
-      state.value.splice(index, 1, getProduct);
     },
     emptySale: (state, action) => {
       state.value = [];

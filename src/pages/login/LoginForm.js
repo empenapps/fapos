@@ -26,6 +26,7 @@ import {
   setProduct,
 } from "../../store/reducers/product";
 import { setUserData } from "../../store/reducers/user";
+import { setStoreId } from "../../store/reducers/storeId";
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
@@ -50,7 +51,8 @@ export default function LoginForm() {
         }
       );
       dispatch(setUserData(response.data));
-      await getProductList(dispatch, storeId);
+      dispatch(setStoreId(response.data.storeId));
+      await getProductList(dispatch, response.data.storeId);
       navigate("/dashboard", { replace: true });
     } catch (error) {
       console.log(error);

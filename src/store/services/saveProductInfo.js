@@ -1,6 +1,5 @@
 import axios from "axios";
 import { BASE_URL } from "../../Api";
-import product from "../reducers/product";
 import { getProductList } from "./getProductList";
 
 export const saveProductInfo = (data, dispatch) => {
@@ -9,8 +8,8 @@ export const saveProductInfo = (data, dispatch) => {
       headers: { "Content-Type": "application/json" },
     })
     .then((response) => {
-      getProductList(dispatch, product.inStoreId);
-      console.log('Product Saved Successfully');
+      getProductList(dispatch, data.inStoreId);
+      console.log("Product Saved Successfully");
     })
     .catch((error) => {
       console.log(error);
